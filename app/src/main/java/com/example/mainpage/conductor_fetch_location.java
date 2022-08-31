@@ -83,7 +83,7 @@ public class conductor_fetch_location extends FragmentActivity implements OnMapR
                 locationLong = location.getLongitude();
                 getLocationUpdates();
                 readChanges();
-                markBusLocation();
+                //markBusLocation();
             } else {
                 Toast.makeText(context, "Turn ON Location", Toast.LENGTH_SHORT).show();
                 finish();
@@ -207,8 +207,8 @@ public class conductor_fetch_location extends FragmentActivity implements OnMapR
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         LatLng currentLocation = new LatLng(locationLat, locationLong);
-        myMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Bus Location"));
-//        myMarker_user = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location"));
+        //myMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Bus Location"));
+        myMarker_user = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
 
 //To Zoom upto 10x
