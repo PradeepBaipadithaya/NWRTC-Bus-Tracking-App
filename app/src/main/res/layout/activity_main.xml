@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="102dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="37dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/logo" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="319dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="191dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="WHO ARE YOU ?"
+        android:textColor="#252733"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/pass1"
+        android:layout_width="248dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="322dp"
+        android:layout_marginEnd="72dp"
+        android:background="@drawable/mybutton"
+        android:fontFamily="sans-serif-black"
+        android:text="passanger" />
+
+    <Button
+        android:id="@+id/pass2"
+        android:layout_width="248dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/mybutton"
+        android:fontFamily="sans-serif-black"
+        android:text="conductor" />
+
+    <Button
+        android:id="@+id/pass3"
+        android:layout_width="248dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="89dp"
+
+        android:layout_marginTop="525dp"
+        android:background="@drawable/mybutton"
+        android:fontFamily="sans-serif-black"
+        android:text="Trip collector" />
+
+    <Button
+        android:id="@+id/conductor_login"
+        android:layout_width="248dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="89dp"
+
+        android:layout_marginTop="624dp"
+        android:background="@drawable/mybutton"
+        android:fontFamily="sans-serif-black"
+        android:text="Administrator" />
+
+
+</RelativeLayout>
+

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mainpage</string>
+    <string name="title_activity_passenger_fetch_location">passenger_fetch_location</string>
+    <string name="title_activity_passenger_fetch_locations">passenger_fetch_locations</string>
+</resources>

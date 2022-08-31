@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "959800334792",
+    "firebase_url": "https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "awatar-360605",
+    "storage_bucket": "awatar-360605.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959800334792:android:a8b790cfb11775d625c8fd",
+        "android_client_info": {
+          "package_name": "com.example.mainpage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959800334792-qvrlnb4pv66u7o796o6k6n4si2l3f399.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl9Bhsi-I-WtYwAPNd7WUIoA8YOTTVloc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959800334792-qvrlnb4pv66u7o796o6k6n4si2l3f399.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959800334792:android:f4680cd72bd0f1a525c8fd",
+        "android_client_info": {
+          "package_name": "com.example.try_maps_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959800334792-qvrlnb4pv66u7o796o6k6n4si2l3f399.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl9Bhsi-I-WtYwAPNd7WUIoA8YOTTVloc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959800334792-qvrlnb4pv66u7o796o6k6n4si2l3f399.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
