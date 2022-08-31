@@ -70,13 +70,12 @@ public class passenger_fetch_locations extends FragmentActivity implements OnMap
         context = getApplicationContext();
         boolean location_flag=isLocationEnabled(context);
 
-        reference = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Location details").child("Passenger").child("conductor_2").child("location");
-        conductor_phone_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Conductor").child("conductor_2").child("phone_num");
-        conductor_bus_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Conductor").child("conductor_2").child("bus_num");
+        reference = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Location details").child("Passenger").child("pass_1").child("location");
+//        conductor_phone_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Conductor").child("conductor_2").child("phone_num");
+//        conductor_bus_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Conductor").child("conductor_2").child("bus_num");
 
 //        //To get current location
         if(location_flag==true) {
-//
             manager = (LocationManager) getSystemService(LOCATION_SERVICE);
             Criteria cri = new Criteria();
             String provider = manager.getBestProvider(cri, false);

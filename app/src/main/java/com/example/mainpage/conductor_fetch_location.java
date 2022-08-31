@@ -1,12 +1,16 @@
 package com.example.mainpage;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.mainpage.databinding.ActivityConducterFetchLocationBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,6 +45,8 @@ public class conductor_fetch_location extends FragmentActivity implements OnMapR
     private final int MIN_DISTANCE =1;//for update
     public double locationLat;
     public double locationLong;
+    private Context context;
+    private FusedLocationProviderClient fusedLocationClient;
 
     Marker myMarker;
     Marker myMarker_user;
@@ -56,29 +63,58 @@ public class conductor_fetch_location extends FragmentActivity implements OnMapR
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        context = getApplicationContext();
+        boolean location_flag = isLocationEnabled(context);
 
-        reference = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("User").child("conductor_2").child("location");
-//        conductor_phone_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Conductor").child("conductor_2").child("phone_num");
-//        conductor_bus_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Conductor").child("conductor_2").child("bus_num");
+        reference = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Location details").child("Conductor").child("conductor_2").child("location");
+        conductor_phone_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Location details").child("Conductor").child("conductor_2").child("phone_num");
+        conductor_bus_num = FirebaseDatabase.getInstance("https://awatar-360605-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Location details").child("Conductor").child("conductor_2").child("bus_num");
 
         //conductor_phone_num.setValue("123");
         //conductor_bus_num.setValue("123");
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         //To get current location
-        try {
+        if (location_flag == true) {
             Criteria cri = new Criteria();
             String provider = manager.getBestProvider(cri, false);
             Location location = manager.getLastKnownLocation(provider);
-            locationLat = location.getLatitude();
-            locationLong = location.getLongitude();
-            getLocationUpdates();
-            //readChanges();
-            // markBusLocation();
-        }catch (Exception e){
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            if (location != null) {
+                locationLat = location.getLatitude();
+                locationLong = location.getLongitude();
+                getLocationUpdates();
+                readChanges();
+                markBusLocation();
+            } else {
+                Toast.makeText(context, "Turn ON Location", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+        }
+    }
+
+    public static boolean isLocationEnabled(Context context) {
+        int locationMode = 0;
+        String locationProviders;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            try {
+                locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+
+        }else{
+            locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
         }
 
+
     }
+
     private void markBusLocation() {
 //        if (phone_num.equals("123") && bus_num.equals("123")) {
             reference.addValueEventListener(new ValueEventListener() {
@@ -166,22 +202,13 @@ public class conductor_fetch_location extends FragmentActivity implements OnMapR
         }
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         LatLng currentLocation = new LatLng(locationLat, locationLong);
         myMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Bus Location"));
-        myMarker_user = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location"));
+//        myMarker_user = mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
 
 //To Zoom upto 10x
@@ -196,10 +223,6 @@ public class conductor_fetch_location extends FragmentActivity implements OnMapR
     @Override
     public void onLocationChanged(@NonNull Location location) {
         if(location!=null){
-            locationLat=location.getLatitude();
-            locationLong=location.getLongitude();
-            //  Toast.makeText(this, ""+location, Toast.LENGTH_SHORT).show();
-//            saveLocation(locationLat, locationLong);
             saveLocation(location);
         }
         else{

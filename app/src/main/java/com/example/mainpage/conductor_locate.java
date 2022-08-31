@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class conductor_locate extends AppCompatActivity {
-    Button locate
+    Button locate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
